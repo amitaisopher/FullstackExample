@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model DistList {
+  id    String             @id @default(cuid())
+  name  String             @unique
+  users UsersOnDistLists[]
+
+  @@unique([id, name])
+}
+
+model User {
+  id        String             @id @default(cuid())
+  email     String             @unique
+  name      String?
+  ApiKey    ApiKey[]
+  distLists UsersOnDistLists[]
+}
+
+model UsersOnDistLists {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  distLists  DistList @relation(fields: [distListId], references: [id])
+  distListId String
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([userId, distListId])
+  @@index([userId])
+  @@index([distListId])
+}
+
+model ApiKey {
+  id      String  @id @default(cuid())
+  key     String  @unique
+  enabled Boolean
+  user    User    @relation(fields: [userId], references: [id])
+  userId  String
+
+  @@index([userId])
+}
