@@ -76,6 +76,19 @@ router.route('/user').post(async (req: Request, res: Response) => {
         res.status(500).json(error)
     }
 })
+    .delete(async (req: Request, res: Response) => {
+        const { id } = req.body as { id: string }
+        try {
+            const result = await db.user.deleteMany({
+                where: {
+                    id
+                }
+            })
+            return res.status(200).json(result)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    })
 
 router.route('/distList/:distListId').get(async (req: Request, res: Response) => {
     const { distListId } = req.params

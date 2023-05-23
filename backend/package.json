@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "API server to help you manage your local community",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
     "start": "node dist/index.js",
     "build": "npx tsc && tsc-alias",
@@ -11,11 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "4.14.0",
+    "@prisma/client": "^4.14.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "prisma": "^4.14.0",
+    "prisma": "^4.14.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

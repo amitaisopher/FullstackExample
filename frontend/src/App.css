@@ -43,10 +43,29 @@
 
 .table-entry {
   width: 200px;
+  
+}
+
+.table .row .table-entry:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.table .row .table-entry div {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: start;
+}
+
+.delete-icon {
+  cursor: pointer;
+  display: none
+}
+
+.table .row .table-entry:hover .delete-icon {
+  display: block;
 }
 
 .row {

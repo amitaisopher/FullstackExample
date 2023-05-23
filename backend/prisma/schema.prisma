@@ -28,9 +28,9 @@ model User {
 }
 
 model UsersOnDistLists {
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId     String
-  distLists  DistList @relation(fields: [distListId], references: [id])
+  distLists  DistList @relation(fields: [distListId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   distListId String
   assignedAt DateTime @default(now())
   assignedBy String

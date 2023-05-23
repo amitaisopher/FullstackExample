@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-    <UsersTable users={users}/>
+    <UsersTable users={users} updateUsersCallback={fetchData}/>
     <BasicModal buttonText='Add new user' updateUsersCallback={fetchData}/>
     </>
   )
